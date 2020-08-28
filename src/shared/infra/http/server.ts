@@ -8,7 +8,7 @@ import routes from '@shared/infra/http/routes'
 import AppError from '@shared/errors/AppError'
 import uploadConfig from '@config/upload'
 import '@shared/infra/http/typeorm'
-import '@shared/container'
+import '@shared/container'; //Injeção de dependência
 
 const app = express()
 
