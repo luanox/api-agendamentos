@@ -25,9 +25,10 @@ class UsersTokenRepository implements IUserTokensRepository{
         const userToken = this.ormRepository.create({
             user_id
         })
-
+        
         await this.ormRepository.save(userToken);
-
+        
+        console.log(userToken);
         return userToken;
     }
 

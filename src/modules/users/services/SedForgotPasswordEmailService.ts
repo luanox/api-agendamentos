@@ -25,14 +25,15 @@ class SedForgotPasswordEmailService {
 
   public async execute({email}: Request): Promise<void> {
     const user = await this.usersRepository.findByEmail(email);
+    
 
     if(!user) {
         throw new AppError('User does not Exists.');
     }
 
-    await this.userTokensRepository.generate(user.id)
-
-    this.mailProvider.sendMail(email, 'Pedido recebido para recuperação de senha!!!')
+    const {token} = await this.userTokensRepository.generate(user.id)
+    
+    await this.mailProvider.sendMail(email, `Pedido recebido para recuperação de senha!!! token: ${token}`)
   }
 }
 
